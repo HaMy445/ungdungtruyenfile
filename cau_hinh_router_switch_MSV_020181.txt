@@ -1,0 +1,44 @@
+// CẤU HÌNH ROUTER
+
+enable
+configure terminal
+hostname Router
+enable secret 020181
+
+interface GigabitEthernet0/0
+ ip address 193.10.1.1 255.255.255.0
+ no shutdown
+exit
+
+// CẤU HÌNH SWITCH
+
+enable
+configure terminal
+hostname Switch
+
+vlan 10
+ name KyThuat
+exit
+
+vlan 20
+ name KeToan
+exit
+
+vlan 30
+ name GiamDoc
+exit
+
+interface range fa0/1 - 8
+ switchport mode access
+ switchport access vlan 10
+exit
+
+interface range fa0/9 - 16
+ switchport mode access
+ switchport access vlan 20
+exit
+
+interface range fa0/17 - 24
+ switchport mode access
+ switchport access vlan 30
+exit 
